@@ -1,0 +1,48 @@
+<div fxLayout="column" fxLayoutAlign="space-evenly center">
+    <div class="content-width margin-b">
+        <h1>{{this.details.title}}</h1>
+        <p *ngIf="this.details?.selftext" class="word-break">{{this.details.selftext}}</p>
+
+
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle class="tree-node">
+                <li class="mat-tree-node">
+                    <button mat-icon-button disabled></button>
+
+                    <div fxLayout="column" fxLayoutAlign="start start">
+                        <mat-chip-list class="author-padding">
+                            <mat-chip color="accent" selected>{{node.author}}:</mat-chip>
+                        </mat-chip-list>
+                        <div class="word-break">
+                            {{node.comment}}
+                        </div>
+                    </div>
+                </li>
+            </mat-tree-node>
+
+            <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild" class="tree-node">
+                <li>
+                    <div class="mat-tree-node">
+                        <button mat-icon-button matTreeNodeToggle>
+                            <mat-icon class="mat-icon-rtl-mirror">
+                                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                            </mat-icon>
+                        </button>
+                        <div fxLayout="column" fxLayoutAlign="start start">
+                            <mat-chip-list class="author-padding">
+                                <mat-chip color="accent" selected>{{node.author}}:</mat-chip>
+                            </mat-chip-list>
+                            <div class="word-break">
+                                {{node.comment}}
+                            </div>
+                        </div>
+
+                    </div>
+                    <ul [class.tree-invisible]="!treeControl.isExpanded(node)">
+                        <ng-container matTreeNodeOutlet></ng-container>
+                    </ul>
+                </li>
+            </mat-nested-tree-node>
+        </mat-tree>
+    </div>
+</div>

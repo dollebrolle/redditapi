@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.content-width {
+    width: 50%;
+}
+
+.mat-tree-node {
+    align-items: start !important;
+}
+
+
+.mat-standard-chip {
+    min-height: 20px !important;
+}
+
+.mat-chip {
+    font-size: 12px !important;
+}

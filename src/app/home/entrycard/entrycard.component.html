@@ -1,0 +1,14 @@
+<mat-card [routerLink]="['/entry']" [state]="entryData">
+    <mat-card-header>
+        <h3 mat-card-avatar>{{entryData.score}}</h3>
+        <mat-card-title>{{entryData.title}}</mat-card-title>
+        <mat-card-subtitle>Skapad av {{entryData.author}} {{entryData.created * 1000| date:'short'}}</mat-card-subtitle>
+    </mat-card-header>
+    <img *ngIf="entryData.thumbnail !== 'self'" mat-card-image [src]="entryData.thumbnail">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>Kommentarer: {{entryData.num_comments}}</div>
+        <button mat-icon-button (click)="openNewTab(entryData.permalink)">
+            <mat-icon>login</mat-icon>
+        </button>
+    </div>
+</mat-card>
